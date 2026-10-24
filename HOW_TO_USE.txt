@@ -1,0 +1,55 @@
+HOW TO USE: articulatory-vocal-tract-geometry
+====================================
+
+PURPOSE
+  Model estimated vocal tract length (VTL cm), pharyngeal volume, velopharyngeal port
+  dynamics, larynx height displacement, and lip protrusion for physical and parametric synthesis.
+
+CAPABILITIES
+  - Calculate estimated anatomical VTL (cm) from formant dispersion (Fdisp)
+  - Derive VTL warping factor relative to standard reference vocal tracts
+  - Measure lip posture: protrusion bias (mm), aperture area (cm2), rounding coefficient
+  - Model velopharyngeal port dynamics: coupling area (mm2), nasal pole/zero (FN/ZN)
+  - Estimate vertical larynx displacement (mm) during pitch accents and projection
+  - Output machine-readable vocal_tract_geometry.json
+
+USE CASES
+  - "Calculate the physical vocal tract length and warping factor for this speaker"
+  - You are setting up pole-zero nasal resonators in Klatt cascade synthesis
+  - You need physical tract parameters for tube-model synthesizers (VocalTractLab)
+  - You want to understand why pitch shifts cause nasal twang or brighter resonance
+
+IDEAS
+  - Pass VTL warping factor directly to WORLD vocoder in synthesis-control-compiler
+  - Pair with formant-diphthong-dynamics to ground formants in physical geometry
+  - Use larynx displacement to model high-pitch vocal strain
+
+PROMPTS YOU CAN PASTE
+  /vocal-tract-geometry Queens-male-orator
+
+  vocal tract geometry of Steve Jobs
+
+  articulatory profile for this speaker
+
+  model vocal tract dimensions for this voice. Calculate VTL in cm and nasal pole/zeros.
+
+  What is the estimated vocal tract length and larynx height variation for this subject?
+
+EXAMPLE FLOW
+  You:   /vocal-tract-geometry Queens-male-orator
+  Model: 1. Vocal Tract Dimensions:
+         - Formant dispersion: 1018 Hz -> Estimated VTL: 17.2 cm (warping factor 1.012)
+         2. Lip Geometry:
+         - Neutral aperture: 2.2 cm2, protrusion bias: 1.5mm, slight lateral spread
+         3. Velopharyngeal Port:
+         - Incomplete closure during emphasis: coupling area 8.5 mm2
+         - Nasal pole (FN): 320 Hz, Nasal zero (ZN): 1650 Hz
+         4. Larynx Posture:
+         - Mildly elevated (+3.5mm during emphatic peaks)
+         [vocal_tract_geometry.json]
+
+DEFAULT GOALS IF YOU DON'T NAME ONE
+  1. Estimated VTL in cm derived from formant dispersion
+  2. Lip aperture area and protrusion factor
+  3. Velopharyngeal nasal pole/zero acoustic parameters
+  4. Machine-readable vocal_tract_geometry.json block
